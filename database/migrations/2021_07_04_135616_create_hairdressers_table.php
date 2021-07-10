@@ -16,9 +16,9 @@ class CreateHairdressersTable extends Migration
         Schema::create('hairdressers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('hair_title');
-            $table->string('hair_talk');
-            $table->string('hair_movie');
-            $table->string('hair_img');
+            // $table->string('hair_talk');
+            // $table->string('hair_movie');
+            // $table->string('hair_img');
             $table->datetime('arrivedate');
             $table->timestamps();
         });
