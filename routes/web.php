@@ -24,14 +24,14 @@ Auth::routes();
 //publicフォルダで/homeを呼び出した時の初期画面を、indexファイルに定義している。
 Route::get('/home', 'HomeController@index')->name('home');
 
-// 美容師の新しい「施術記録」を行う画面へのルート定義(hairdressers.blade.php)
+// 美容師の新しい「施術記録」の追加を行う画面へのルート定義(hairdressers.blade.php)
 //http://firstdev.sakura.ne.jp/beauty/ にアクセスした際の表示ページになる。
 Route::get('/', function () {
-    // return view('hairdressers');
-    $hairdressers = Hairdresser::orderBy('created_at', 'asc')->get();
-     return view('hairdressers', [
-         'hairdressers' => $hairdressers
-     ]);
+    // $hairdressers = Hairdresser::orderBy('created_at', 'asc')->get();
+    //  return view('hairdressers', [
+    //      'hairdressers' => $hairdressers
+    //  ]);
+     return view('hairdressers');
 });
 
 //美容師の記録を一覧表示する個別画面へのルート定義(hairrecords.blade.php)

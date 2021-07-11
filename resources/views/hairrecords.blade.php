@@ -2,7 +2,7 @@
 @extends('layouts.app')
  @section('content')
      <!-- Bootstrapの定形コード… -->
-        <!--@include('hairdressers', ['hairdressers' => $hairdressers])-->
+        <!-- hairdresser: 既に登録されてる施術記録のリスト -->
         @if (count($hairdressers) > 0)
          <div class="card-body">
              <div class="card-body">
@@ -28,6 +28,7 @@
                      </tbody>
                  </table>
              </div>
+             <a href="{{ url('/') }}">施術記録を作成する</a>
          </div>		
     @endif
  @endsection
