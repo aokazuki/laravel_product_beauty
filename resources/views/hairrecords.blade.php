@@ -20,8 +20,25 @@
                                  <td class="table-text">
                                      <div>{{ $hairdresser->hair_title }}</div>
                                  </td>
- 			        <!-- 施術記録: 削除ボタン -->
+                                 <!-- 施術記録日 -->
+                                 <td class="table-text">
+                                     <div>{{ $hairdresser->arrivedate }}</div>
+                                 </td>
+                                 <!-- 施術記録: 更新ボタン -->
                                  <td>
+                                    <form action="{{ url('hairdressersedit/'.$hairdresser->id) }}" method="GET"> {{ csrf_field() }}
+                                        <button type="submit" class="btn btn-primary">編集する </button>
+                                    </form>
+                                </td>
+ 			                     <!-- 施術記録: 削除ボタン -->
+                                 <td>
+                                 <form action="{{ url('hairdresser/'.$hairdresser->id) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">
+                                        削除する
+                                    </button>
+                                </form>
                                  </td>
                              </tr>
                          @endforeach

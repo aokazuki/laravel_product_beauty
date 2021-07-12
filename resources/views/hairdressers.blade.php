@@ -19,6 +19,16 @@
                      <input type="text" name="hair_title" class="form-control" value="{{ old('hair_title')}}">
                  </div>
              </div>
+             <!-- 施術記録日 -->
+             <div class="card-title">
+                施術記録日
+             </div>
+             <div class="form-group">
+                 <div class="col-sm-6">
+                     <!--バリデーションが失敗したら直前の入力値をフラッシュデータから再表示-->
+                     <input type="date" name="arrivedate" class="form-control" value="{{ old('arrivedate')}}">
+                 </div>
+             </div>
              <!-- 施術記録 登録ボタン -->
              <div class="form-group">
                  <div class="col-sm-offset-3 col-sm-6">

@@ -49,6 +49,7 @@ Route::post('/hairdressers', function (Request $request) {
     //バリデーション
     $validator = Validator::make($request->all(), [
     'hair_title' => 'required|max:20',
+    'arrivedate' => 'required'
     ]);
     //バリデーション:エラー 
     if ($validator->fails()) {
@@ -61,14 +62,44 @@ Route::post('/hairdressers', function (Request $request) {
     // Eloquent モデル
     $hairdressers = new Hairdresser;
     $hairdressers->hair_title = $request->hair_title;
-    $hairdressers->arrivedate = '2021-07-10 00:00:00';
+    $hairdressers->arrivedate = $request->arrivedate;
     $hairdressers->save(); 
     return redirect('/');
 });
 
 // 施術記録を削除
 Route::delete('/hairdresser/{hairdresser}', function (Hairdresser $hairdresser) {
-    //
+    $hairdresser->delete();       //追加
+    return redirect('/hairrecords');  //追加
+});
+
+//「施術記録」を更新する画面を表示
+Route::get('/hairdressersedit/{hairdressers}',function(Hairdresser $hairdressers){
+    return view('hairdressersedit', ['hairdresser' => $hairdressers]);
+});
+
+//「施術記録」を更新する処理
+Route::post('hairdressers/update',function(Request $request){
+    //バリデーション
+    $validator = Validator::make($request->all(), [
+    'id' => 'required',
+    'hair_title' => 'required|max:20',
+    'arrivedate' => 'required'
+    ]);
+    //バリデーション:エラー 
+    if ($validator->fails()) {
+    return redirect('/hairdressersedit')
+    ->withInput()
+    ->withErrors($validator);
+    }
+
+    //データ更新処理
+    // Eloquent モデル
+    $hairdressers = Hairdresser::find($request->id);
+    $hairdressers->hair_title = $request->hair_title;
+    $hairdressers->arrivedate = $request->arrivedate;
+    $hairdressers->save(); 
+    return redirect('/hairrecords');
 });
 
 // Auth::routes();
