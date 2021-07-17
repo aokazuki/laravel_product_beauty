@@ -10,6 +10,18 @@
                 <input type="text" name="hair_title" class="form-control" value="{{$hairdresser->hair_title}}">
             </div>
             <!--/ hair_title -->
+            <!-- hair_talk -->
+            <div class="form-group">
+                <label for="hair_talk">話したこと</label>
+                <textarea name="hair_talk" rows="10" cols="30" class="form-control">{{$hairdresser->hair_talk}}</textarea>
+            </div>
+            <!--/ hair_talk -->
+            <!-- img_url -->
+            <div class="form-group">
+                <label for="img_url">画像</label>
+                <input type="file" name="img_url" value="{{$hairdresser->img_url}}">
+            </div>
+            <!--/ img_url -->
             <!-- arrivedate -->
             <div class="form-group">
                 <label for="arrivedate">施術記録日</label>

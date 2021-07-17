@@ -15,11 +15,12 @@ class CreateHairdressersTable extends Migration
     {
         Schema::create('hairdressers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id');
             $table->string('hair_title');
-            // $table->string('hair_talk');
+            $table->string('hair_talk')->nullable();; //追記！！！
             // $table->string('hair_movie');
-            // $table->string('hair_img');
-            $table->datetime('arrivedate');
+            $table->string('img_url')->nullable(); //追記！！！
+            $table->date('arrivedate');
             $table->timestamps();
         });
     }

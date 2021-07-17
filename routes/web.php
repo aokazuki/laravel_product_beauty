@@ -22,7 +22,7 @@ use Illuminate\Http\Request; //HTTPリクエストを扱うためのメソッド
 Auth::routes();
 
 //publicフォルダで/homeを呼び出した時の初期画面を、Homeコントローラのindexから呼び出している。
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HairdressersController@index')->name('home');
 
 //美容師の記録を一覧表示する個別画面へのルート定義(hairrecords.blade.php)
 Route::get('/hairrecords', 'HairdressersController@index');

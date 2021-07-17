@@ -2,14 +2,29 @@
 @extends('layouts.app')
  @section('content')
      <!-- Bootstrapの定形コード… -->
+     @if (session('addmessage'))
+        <div class="alert alert-success">
+        {{ session('addmessage')}}
+        </div>
+     @endif
+     @if (session('editmessage'))
+        <div class="alert alert-success">
+        {{ session('editmessage')}}
+        </div>
+     @endif
+     @if (session('deletemessage'))
+        <div class="alert alert-danger">
+        {{ session('deletemessage')}}
+        </div>
+     @endif
         <!-- hairdresser: 既に登録されてる施術記録のリスト -->
-        @if (count($hairdressers) > 0)
+        @if (count($hairdressers) >= 0)
          <div class="card-body">
              <div class="card-body">
                  <table class="table table-striped task-table">
                      <!-- テーブルヘッダ -->
                      <thead>
-                         <th>記録一覧</th>
+                         <th>施術記録一覧</th>
                          <th>&nbsp;</th>
                      </thead>
                      <!-- テーブル本体 -->
@@ -19,6 +34,7 @@
                                  <!-- 施術記録タイトル -->
                                  <td class="table-text">
                                      <div>{{ $hairdresser->hair_title }}</div>
+                                     <div><img src="upload/{{$hairdresser->img_url}}" width="150"></div> <!--画像サムネ表示-->
                                  </td>
                                  <!-- 施術記録日 -->
                                  <td class="table-text">
