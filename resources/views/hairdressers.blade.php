@@ -47,6 +47,8 @@
              <div class="col-sm-6">
               <label>画像1</label>
               <input type="file" name="img_url">
+              <!--<input id="fileUploader" type="file" name="img_url" accept='image/' enctype="multipart/form-data" multiple="multiple" required autofocus>-->
+              <!--<input type="file" name="img_url">-->
              </div>
             <!--
              <div class="form-group">

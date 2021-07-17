@@ -9,6 +9,7 @@ use App\Hairdresser; //Hairdresserモデルを使用する
 use Validator; //バリデーションを有効にする
 use Auth; //認証モデルを使用する
 use Session; //Session機能を利用する
+use Illuminate\Support\Str;
 
 class HairdressersController extends Controller
 {
@@ -86,17 +87,36 @@ class HairdressersController extends Controller
         ->withErrors($validator);
         }
 
-        //画像アップロード処理
+        // //画像アップロード処理
+        // $file = $request->img_url;
+        //     // ログインユーザー取得
+        //     $user = Auth::user();
+        //     if ( !empty($file) ) {
+        //         // ファイルの拡張子取得
+        //         $ext = $file->guessExtension();
+        //         //ファイル名を生成
+        //         $filename = Str::random(32).'.'.$ext;
+        //         // 画像のファイル名を任意のDBに保存
+        //         $user->img_url = $filename;
+        //         $user->save();
+        //         //public/uploadフォルダを作成
+        //         $target_path = public_path('/upload/');
+        //     }else{
+        //         $filename ="";
+        //     }
+        //     //ファイルをpublic/uploadフォルダに移動
+        //     $file->move($target_path,$filename);
+        
         $file = $request->file('img_url'); //file取得
-        if( !empty($file) ){ //file名が空かどうかのチェック
-            $ext = $file->guessExtension(); //ファイルの拡張子取得
-            $filename = $file->getClientOriginalName(); //ファイル名を取得
-            $target_path = public_path('/upload/'); //public/uploadフォルダを作成
-            $file->move($target_path,$filename); //ファイルをpublic/uploadフォルダに移動
-            // $move = $file->move('../upload/', $filename); //ファイルを移動
-        }else{
-            $filename ="";
-        }
+            if( !empty($file) ){ //file名が空かどうかのチェック
+                $ext = $file->guessExtension(); //ファイルの拡張子取得
+                $filename = $file->getClientOriginalName(); //ファイル名を取得
+                // $target_path = public_path('/upload/'); //public/uploadフォルダを作成
+                // $file->move($target_path,$filename); //ファイルをpublic/uploadフォルダに移動
+                $move = $file->move('../uploads/', $filename); //ファイルを移動
+            }else{
+                $filename ="";
+            }
 
         //以下に登録処理を記述（Eloquentモデル）
         $hairdressers = new Hairdresser;

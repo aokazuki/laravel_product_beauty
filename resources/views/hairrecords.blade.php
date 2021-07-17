@@ -34,7 +34,10 @@
                                  <!-- 施術記録タイトル -->
                                  <td class="table-text">
                                      <div>{{ $hairdresser->hair_title }}</div>
-                                     <div><img src="upload/{{$hairdresser->img_url}}" width="150"></div> <!--画像サムネ表示-->
+                                     <!--@if($user->img_url)
+                                        <img src="/upload/{{ $user->img_url }}">
+                                     @endif-->
+                                     <div><img src="uploads/{{$hairdresser->img_url}}" width="150"></div> <!--画像サムネ表示-->
                                  </td>
                                  <!-- 施術記録日 -->
                                  <td class="table-text">
