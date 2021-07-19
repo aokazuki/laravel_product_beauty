@@ -86,8 +86,21 @@ class HairdressersController extends Controller
         ->withInput()
         ->withErrors($validator);
         }
+        
+        $file = $request->file('img_url'); //file取得
+            if( !empty($file) ){ //file名が空かどうかのチェック
+                $ext = $file->guessExtension(); //ファイルの拡張子取得
+                $filename = $file->getClientOriginalName(); //「ローカルに保存してる」ファイル名を取得
+                $path = $file->store('public'); //このままだとサーバー上に置かれているファイル名に、保存先のパスも含まれた状態のファイル名が保存される
+                // $filename = Str::random(32).'.'.$ext; //ファイル名を生成する
+                //$move = $file->move('../uploads/', $filename); //ファイルをpublic/uploadフォルダに移動
+                // $target_path = public_path('/upload/'); //public/uploadフォルダを作成
+                // $file->move($target_path,$filename); //ファイルをpublic/uploadフォルダに移動
+            }else{
+                $path ="";
+            }
 
-        // //画像アップロード処理
+            // //画像アップロード処理
         // $file = $request->img_url;
         //     // ログインユーザー取得
         //     $user = Auth::user();
@@ -106,24 +119,13 @@ class HairdressersController extends Controller
         //     }
         //     //ファイルをpublic/uploadフォルダに移動
         //     $file->move($target_path,$filename);
-        
-        $file = $request->file('img_url'); //file取得
-            if( !empty($file) ){ //file名が空かどうかのチェック
-                $ext = $file->guessExtension(); //ファイルの拡張子取得
-                $filename = $file->getClientOriginalName(); //ファイル名を取得
-                // $target_path = public_path('/upload/'); //public/uploadフォルダを作成
-                // $file->move($target_path,$filename); //ファイルをpublic/uploadフォルダに移動
-                $move = $file->move('../uploads/', $filename); //ファイルを移動
-            }else{
-                $filename ="";
-            }
 
         //以下に登録処理を記述（Eloquentモデル）
         $hairdressers = new Hairdresser;
         $hairdressers->user_id = Auth::user()->id;
         $hairdressers->hair_title = $request->hair_title;
         $hairdressers->hair_talk = $request->hair_talk;
-        $hairdressers->img_url = $filename;
+        $hairdressers->img_url = str_replace('public/', '', $path); //DBへの保存時に、パスから/publicを削って保存する。文字列なので削れる
         $hairdressers->arrivedate = $request->arrivedate;
         $hairdressers->save(); 
         return redirect('/hairrecords')->with('addmessage', '施術記録を作成しました');
