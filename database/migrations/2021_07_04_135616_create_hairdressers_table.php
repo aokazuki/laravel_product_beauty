@@ -20,6 +20,8 @@ class CreateHairdressersTable extends Migration
             $table->string('hair_talk')->nullable();; //追記！！！
             // $table->string('hair_movie');
             $table->string('img_url')->nullable(); //追記！！！
+            $table->string('img_url2')->nullable(); //追記！！！
+            $table->string('img_url3')->nullable(); //追記！！！
             $table->date('arrivedate');
             $table->timestamps();
         });

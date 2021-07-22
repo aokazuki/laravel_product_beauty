@@ -50,6 +50,14 @@
               <!--<input id="fileUploader" type="file" name="img_url" accept='image/' enctype="multipart/form-data" multiple="multiple" required autofocus>-->
               <!--<input type="file" name="img_url">-->
              </div>
+             <div class="col-sm-6">
+              <label>画像2</label>
+              <input type="file" name="img_url2">
+             </div>
+             <div class="col-sm-6">
+              <label>画像3</label>
+              <input type="file" name="img_url3">
+             </div>
             <!--
              <div class="form-group">
                 <input id="fileUploader" type="file" name="img" accept='image/' enctype="multipart/form-data" multiple="multiple" required autofocus>

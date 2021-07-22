@@ -37,18 +37,27 @@ class HairdressersController extends Controller
     
         //画像アップロード処理
         $file = $request->file('img_url'); //file取得
-        if( !empty($file) ){ //file名が空かどうかのチェック
-            $filename = $file->getClientOriginalName(); //ファイル名を取得
-            $move = $file->move('../upload/', $filename); //ファイルを移動
-        }else{
-            $filename ="";
-        }
+            if( !empty($file) ){ //file名が空かどうかのチェック
+                $ext = $file->guessExtension(); //ファイルの拡張子取得
+                $filename = $file->getClientOriginalName(); //「ローカルに保存してる」ファイル名を取得
+                $path = $file->store('public'); //このままだとサーバー上に置かれているファイル名に、保存先のパスも含まれた状態のファイル名が保存される
+            }else{
+                $path ="";
+            }
+        // $file = $request->file('img_url'); //file取得
+        // if( !empty($file) ){ //file名が空かどうかのチェック
+        //     $filename = $file->getClientOriginalName(); //ファイル名を取得
+        //     $move = $file->move('../upload/', $filename); //ファイルを移動
+        // }else{
+        //     $filename ="";
+        // }
 
         //データ更新処理(Eloquent モデル)
         $hairdressers = Hairdresser::where('user_id', Auth::user()->id)->find($request->id);
         $hairdressers->hair_title = $request->hair_title;
         $hairdressers->hair_talk = $request->hair_talk;
-        $hairdressers->img_url = $filename;
+        // $hairdressers->img_url = $filename;
+        $hairdressers->img_url = str_replace('public/', '', $path);
         $hairdressers->arrivedate = $request->arrivedate;
         $hairdressers->save(); 
         return redirect('/hairrecords')->with('editmessage', '施術記録を更新しました');
@@ -87,6 +96,7 @@ class HairdressersController extends Controller
         ->withErrors($validator);
         }
         
+        //画像アップロード処理
         $file = $request->file('img_url'); //file取得
             if( !empty($file) ){ //file名が空かどうかのチェック
                 $ext = $file->guessExtension(); //ファイルの拡張子取得
@@ -99,6 +109,24 @@ class HairdressersController extends Controller
             }else{
                 $path ="";
             }
+
+        $file2 = $request->file('img_url2'); //file取得
+        if( !empty($file2) ){ //file名が空かどうかのチェック
+            $ext2 = $file2->guessExtension(); //ファイルの拡張子取得
+            $filename2 = $file2->getClientOriginalName(); //「ローカルに保存してる」ファイル名を取得
+            $path2 = $file2->store('public'); //このままだとサーバー上に置かれているファイル名に、保存先のパスも含まれた状態のファイル名が保存される
+        }else{
+            $path2 ="";
+        }
+
+        $file3 = $request->file('img_url3'); //file取得
+        if( !empty($file3) ){ //file名が空かどうかのチェック
+            $ext3 = $file3->guessExtension(); //ファイルの拡張子取得
+            $filename3 = $file3->getClientOriginalName(); //「ローカルに保存してる」ファイル名を取得
+            $path3 = $file3->store('public'); //このままだとサーバー上に置かれているファイル名に、保存先のパスも含まれた状態のファイル名が保存される
+        }else{
+            $path3 ="";
+        }
 
             // //画像アップロード処理
         // $file = $request->img_url;
@@ -126,6 +154,8 @@ class HairdressersController extends Controller
         $hairdressers->hair_title = $request->hair_title;
         $hairdressers->hair_talk = $request->hair_talk;
         $hairdressers->img_url = str_replace('public/', '', $path); //DBへの保存時に、パスから/publicを削って保存する。文字列なので削れる
+        $hairdressers->img_url2 = str_replace('public/', '', $path2);
+        $hairdressers->img_url3 = str_replace('public/', '', $path3);
         $hairdressers->arrivedate = $request->arrivedate;
         $hairdressers->save(); 
         return redirect('/hairrecords')->with('addmessage', '施術記録を作成しました');

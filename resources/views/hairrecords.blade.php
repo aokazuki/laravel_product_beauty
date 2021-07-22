@@ -34,7 +34,7 @@
                                  <!-- 施術記録タイトル -->
                                  <td class="table-text">
                                      <div>{{ $hairdresser->hair_title }}</div>
-                                     <div><img src="storage/{{ $hairdresser->img_url }}" width="150"></div> <!--画像サムネ表示-->
+                                     <div><img src="storage/{{ $hairdresser->img_url }}" width="100"></div> <!--画像サムネ表示-->
                                  </td>
                                  <!-- 施術記録日 -->
                                  <td class="table-text">
@@ -43,7 +43,7 @@
                                  <!-- 施術記録: 更新ボタン -->
                                  <td>
                                     <form action="{{ url('hairdressersedit/'.$hairdresser->id) }}" method="GET"> {{ csrf_field() }}
-                                        <button type="submit" class="btn btn-primary">編集する </button>
+                                        <button type="submit" class="btn btn-primary">編集</button>
                                     </form>
                                 </td>
  			                     <!-- 施術記録: 削除ボタン -->
@@ -52,7 +52,7 @@
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-danger">
-                                        削除する
+                                        削除
                                     </button>
                                 </form>
                                  </td>
