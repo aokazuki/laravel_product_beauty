@@ -128,6 +128,15 @@ class HairdressersController extends Controller
             $path3 ="";
         }
 
+        $file_movie = $request->file('hair_movie'); //file取得
+        if( !empty($file_movie) ){ //file名が空かどうかのチェック
+            $ext_movie = $file_movie->guessExtension(); //ファイルの拡張子取得
+            $filename_movie = $file_movie->getClientOriginalName(); //「ローカルに保存してる」ファイル名を取得
+            $path_movie = $file_movie->store('public'); //このままだとサーバー上に置かれているファイル名に、保存先のパスも含まれた状態のファイル名が保存される
+        }else{
+            $path_movie ="";
+        }
+
             // //画像アップロード処理
         // $file = $request->img_url;
         //     // ログインユーザー取得
@@ -156,6 +165,7 @@ class HairdressersController extends Controller
         $hairdressers->img_url = str_replace('public/', '', $path); //DBへの保存時に、パスから/publicを削って保存する。文字列なので削れる
         $hairdressers->img_url2 = str_replace('public/', '', $path2);
         $hairdressers->img_url3 = str_replace('public/', '', $path3);
+        $hairdressers->hair_movie = str_replace('public/', '', $path_movie);
         $hairdressers->arrivedate = $request->arrivedate;
         $hairdressers->save(); 
         return redirect('/hairrecords')->with('addmessage', '施術記録を作成しました');

@@ -65,6 +65,12 @@
              </div>
              <div class="form-group">
                 <div class="col-sm-6">
+                <label>動画</label>
+                <input type="file" name="hair_movie">
+                </div>
+             </div>
+             <div class="form-group">
+                <div class="col-sm-6">
                     <img src="../storage/{{ $hairdresser->img_url }}" width="100">
                 </div>
              </div>
@@ -76,6 +82,13 @@
              <div class="form-group">
                 <div class="col-sm-6">
                     <img src="../storage/{{ $hairdresser->img_url3 }}" width="100">
+                </div>
+             </div>
+             <div class="form-group">
+                <div class="col-sm-6">
+                    <video controls playsinline width="300px" height="200px">
+                        <source src="../storage/{{ $hairdresser->hair_movie }}">
+                    </video>
                 </div>
              </div>
             <!--
