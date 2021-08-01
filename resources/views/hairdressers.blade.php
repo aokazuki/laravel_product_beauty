@@ -43,40 +43,53 @@
                  </div>
              </div>
 
-             <!-- 画像登録 -->
-             <div class="col-sm-6">
-              <label>画像1</label>
-              <input type="file" name="img_url">
-              <!--<input id="fileUploader" type="file" name="img_url" accept='image/' enctype="multipart/form-data" multiple="multiple" required autofocus>-->
-              <!--<input type="file" name="img_url">-->
+             <!-- ハッシュタグ -->
+             <div class="card-title">
+                ハッシュタグ
              </div>
-             <div class="col-sm-6">
-              <label>画像2</label>
-              <input type="file" name="img_url2">
-             </div>
-             <div class="col-sm-6">
-              <label>画像3</label>
-              <input type="file" name="img_url3">
-             </div>
-             <div class="col-sm-6">
-              <label>動画</label>
-              <input type="file" name="hair_movie">
-             </div>
+             <div class="form-group">
+                <div class="col-sm-6">
+                    <!--バリデーションが失敗したら直前の入力値をフラッシュデータから再表示-->
+                    <input type="text" name="hair_tag" class="form-control" value="{{ old('hair_tag')}}">
+                </div>
+            </div>
+
+            <!-- 画像登録 -->
+            <div class="col-sm-6">
+            <label>画像1</label>
+            <input type="file" name="img_url">
+            <!--<input id="fileUploader" type="file" name="img_url" accept='image/' enctype="multipart/form-data" multiple="multiple" required autofocus>-->
+            <!--<input type="file" name="img_url">-->
+            </div>
+            <div class="col-sm-6">
+            <label>画像2</label>
+            <input type="file" name="img_url2">
+            </div>
+            <div class="col-sm-6">
+            <label>画像3</label>
+            <input type="file" name="img_url3">
+            </div>
+            <div class="col-sm-6">
+            <label>動画</label>
+            <input type="file" name="hair_movie">
+            </div>
             <!--
              <div class="form-group">
                 <input id="fileUploader" type="file" name="img" accept='image/' enctype="multipart/form-data" multiple="multiple" required autofocus>
              </div>
              -->
 
-
-             <!-- 施術記録 登録ボタン -->
-             <div class="form-group">
-                 <div class="col-sm-offset-3 col-sm-6">
-                     <button type="submit" class="btn btn-primary">
-                         保存する
-                     </button>
-                 </div>
+             <div class="card-title">
+            
              </div>
+             <!-- 施術記録 登録ボタン -->
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-6">
+                    <button type="submit" class="btn btn-primary">
+                        保存する
+                    </button>
+                </div>
+            </div>
          </form>
          <a href="{{ url('/hairrecords') }}">施術記録一覧へ</a>
      </div>

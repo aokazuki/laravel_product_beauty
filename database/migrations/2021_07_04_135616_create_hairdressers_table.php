@@ -18,6 +18,7 @@ class CreateHairdressersTable extends Migration
             $table->bigInteger('user_id');
             $table->string('hair_title');
             $table->string('hair_talk')->nullable();; //追記！！！
+            $table->string('hair_tag')->nullable();; //追記！！！
             $table->string('img_url')->nullable(); //追記！！！
             $table->string('img_url2')->nullable(); //追記！！！
             $table->string('img_url3')->nullable(); //追記！！！

@@ -42,11 +42,23 @@
                  </div>
              </div>
 
+             <!-- ハッシュタグ -->
+             <div class="card-title">
+                ハッシュタグ
+             </div>
+             <div class="form-group">
+                <div class="col-sm-6">
+                    <!--バリデーションが失敗したら直前の入力値をフラッシュデータから再表示-->
+                    <input type="text" name="hair_tag" class="form-control" value="{{$hairdresser->hair_tag}}">
+                </div>
+            </div>
+
              <!-- 画像登録 -->
              <div class="form-group">
                 <div class="col-sm-6">
                 <label>画像1</label>
                 <input type="file" name="img_url">
+                <img src="../storage/{{ $hairdresser->img_url }}" width="300">
                 <!--<input id="fileUploader" type="file" name="img_url" accept='image/' enctype="multipart/form-data" multiple="multiple" required autofocus>-->
                 <!--<input type="file" name="img_url">-->
                 </div>
@@ -55,40 +67,23 @@
                 <div class="col-sm-6">
                 <label>画像2</label>
                 <input type="file" name="img_url2">
+                <img src="../storage/{{ $hairdresser->img_url2 }}" width="300">
                 </div>
              </div>
              <div class="form-group">
                 <div class="col-sm-6">
                 <label>画像3</label>
                 <input type="file" name="img_url3">
+                <img src="../storage/{{ $hairdresser->img_url3 }}" width="300">
                 </div>
              </div>
              <div class="form-group">
                 <div class="col-sm-6">
                 <label>動画</label>
                 <input type="file" name="hair_movie">
-                </div>
-             </div>
-             <div class="form-group">
-                <div class="col-sm-6">
-                    <img src="../storage/{{ $hairdresser->img_url }}" width="100">
-                </div>
-             </div>
-             <div class="form-group">
-                <div class="col-sm-6">
-                    <img src="../storage/{{ $hairdresser->img_url2 }}" width="100">
-                </div>
-             </div>
-             <div class="form-group">
-                <div class="col-sm-6">
-                    <img src="../storage/{{ $hairdresser->img_url3 }}" width="100">
-                </div>
-             </div>
-             <div class="form-group">
-                <div class="col-sm-6">
-                    <video controls playsinline width="300px" height="200px">
-                        <source src="../storage/{{ $hairdresser->hair_movie }}">
-                    </video>
+                <video controls playsinline width="300px" height="200px">
+                    <source src="../storage/{{ $hairdresser->hair_movie }}">
+                </video>
                 </div>
              </div>
             <!--

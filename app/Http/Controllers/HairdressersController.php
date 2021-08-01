@@ -56,6 +56,7 @@ class HairdressersController extends Controller
         $hairdressers = Hairdresser::where('user_id', Auth::user()->id)->find($request->id);
         $hairdressers->hair_title = $request->hair_title;
         $hairdressers->hair_talk = $request->hair_talk;
+        $hairdressers->hair_tag = $request->hair_tag;
         // $hairdressers->img_url = $filename;
         $hairdressers->img_url = str_replace('public/', '', $path);
         $hairdressers->arrivedate = $request->arrivedate;
@@ -162,6 +163,7 @@ class HairdressersController extends Controller
         $hairdressers->user_id = Auth::user()->id;
         $hairdressers->hair_title = $request->hair_title;
         $hairdressers->hair_talk = $request->hair_talk;
+        $hairdressers->hair_tag = $request->hair_tag;
         $hairdressers->img_url = str_replace('public/', '', $path); //DBへの保存時に、パスから/publicを削って保存する。文字列なので削れる
         $hairdressers->img_url2 = str_replace('public/', '', $path2);
         $hairdressers->img_url3 = str_replace('public/', '', $path3);
